@@ -8,6 +8,7 @@ class Post(models.Model):
     file = models.FileField(upload_to='files/', blank=True, null=True)
     message = models.TextField(blank=True, null=True)
     time = models.DateTimeField(default=timezone.now())
+    last_updated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.date} -> {self.title} "

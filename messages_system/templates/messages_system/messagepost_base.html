@@ -1,0 +1,18 @@
+{% extends 'private_area/base.html' %}
+
+
+{% block title %}
+List View
+{% endblock title %}
+
+
+{% block content %}
+  <main id="main" class="main">
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <a type="button" class="btn btn-secondary" href="{% url 'post:list_view' %}">Post List</a>
+      <a type="button" class="btn btn-secondary" href="{% url 'post:create' %}">Create</a>
+    </div>
+    {% block body %}
+    {% endblock %}
+  </main>
+{% endblock %}

@@ -12,9 +12,10 @@
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Title</th>
-                    <th>Message</th>
-                    <th>File</th>
+                    <th>From</th>
+                    <th>Subject</th>
+                    <th>Email</th>
+
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -24,13 +25,14 @@
                     <th>
                        <a href="{% url 'post:detail' item.pk %}">{{ item.date }} </a>
                     </th>
-                    <th>{{ item.title }}</th>
-                    <th>{{ item.message }}</th>
-                    <th>{{ item.file }}</th>
+                    <th>{{ item.time }}</th>
+                    <th>{{ item.sender_name }}</th>
+                    <th>{{ item.subject }}</th>
+                    <th>{{ item.email }}</th>
                     <th>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <a type="button" class="btn btn-secondary" href="{% url 'post:update' item.pk %}">Update</a>
-                          <a type="button" class="btn btn-secondary" href="{% url 'post:delete' item.pk %}">Delete</a>
+                          <a type="button" class="btn btn-secondary" href="{% url 'message_post:update' item.pk %}">Update</a>
+                          <a type="button" class="btn btn-secondary" href="{% url 'message_post:delete' item.pk %}">Delete</a>
                         </div>
                     </th>
                 </tr>

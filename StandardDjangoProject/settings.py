@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig',
     'crispy_forms',
     'accounts',
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'public_area',
     'private_area',
     'post',
+    'messages_system',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -120,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 

@@ -1,0 +1,28 @@
+{% extends 'post/post_base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    Detail
+{% endblock title %}
+
+{% block body %}
+
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><strong>Title: </strong>{{ object.title }}</h5>
+        <p class="card-title"><strong>Message: </strong>{{ object.message }}</p>
+        <p class="card-title"><strong>Create on: </strong>{{ object.time }} | <strong>Last update: </strong>{{ object.last_updated }}</p>
+
+        <video autoplay="autoplay" controls="controls" preload="preload">
+            <source src="{{ object.file.url }}" type="video/mp4"></source>
+        </video>
+    </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
