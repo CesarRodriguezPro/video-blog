@@ -1,0 +1,25 @@
+{% extends 'post/post_base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    Create
+{% endblock title %}
+
+{% block body %}
+
+{% if form.pk %}
+    <p>hello world></p>
+{% endif %}
+
+
+<div class="container-flu">
+    <form method="post">{% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <input class="btn btn-success" type="submit" value="Save">
+        <a class="btn btn-success" href="{% url 'post:list_view' %}">Back</a>
+    </form>
+</div>
+
+{% endblock %}

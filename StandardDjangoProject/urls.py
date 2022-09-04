@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -26,6 +25,7 @@ urlpatterns = [
     # apps
     path('', include('public_area.urls', namespace='public_area')),
     path('private_area/', include('private_area.urls', namespace='private_area')),
+    path('post/', include('post.urls', namespace='post')),
 ]
 
 if settings.DEBUG:

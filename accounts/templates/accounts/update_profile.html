@@ -1,0 +1,31 @@
+{% extends 'private_area/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Location Update
+{% endblock title %}
+
+{% block content %}
+  <main id="main" class="main">
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Update {{form.username.value }}</h4>
+                </div>
+                    <div class="card-body" >
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <input type='submit' class='btn btn-primary' value='Update'>
+                        </form>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+  </main>
+{% endblock content %}

@@ -19,6 +19,7 @@ TEMPLATES_DIRS = [
     os.path.join(BASE_DIR, 'accounts', 'templates'),
     os.path.join(BASE_DIR, 'public_area', 'templates'),
     os.path.join(BASE_DIR, 'private_area', 'templates'),
+    os.path.join(BASE_DIR, 'post', 'templates'),
 ]
 
 # Quick-start development settings - unsuitable for production
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     # sections
     'public_area',
     'private_area',
+    'post',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

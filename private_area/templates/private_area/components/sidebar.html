@@ -1,0 +1,31 @@
+{% load static %}
+  <!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'private_area:home' %}">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'accounts:list_view' %}">
+          <i class="bi bi-menu-button-wide"></i><span>Accounts</span></i>
+        </a>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="{% url 'post:list_view' %}">
+          <i class="bi bi-menu-button-wide"></i><span>Post</span></i>
+        </a>
+      </li><!-- End Components Nav -->
+
+
+
+    </ul>
+
+</aside>
+<!-- End Sidebar-->

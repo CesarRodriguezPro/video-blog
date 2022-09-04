@@ -1,12 +1,11 @@
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy
-from .forms import UserCreateForm, UpdatePasswordForm
-from django.views.generic import CreateView, View
+from django.urls import reverse_lazy, reverse
+from .forms import UserCreateForm, UpdatePasswordForm, UserUpdateForm
+from django.views.generic import CreateView, View, ListView, DeleteView, UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate
 from django.contrib.messages import error, success
-
 from .models import User
 
 
@@ -14,7 +13,7 @@ class SignUp(SuccessMessageMixin, CreateView):
     form_class = UserCreateForm
     success_url = reverse_lazy('accounts:login')
     template_name = 'accounts/signup.html'
-    success_message = 'You Succesfully Sign Up'
+    success_message = 'You Successfully Sign Up'
 
 
 class Profile(LoginRequiredMixin, View):
@@ -43,3 +42,37 @@ class Profile(LoginRequiredMixin, View):
             error(request, 'Your current password is not working')
         return redirect("accounts:profile")
 
+
+class ListViewAccounts(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'accounts/list_view.html'
+
+
+class UpdatePasswordView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        return render(request, "accounts/change_password.html", context={'pk': pk})
+
+    def post(self, request, pk=None):
+        form_data = request.POST
+        if form_data['password1'] == form_data['password2'] and len(form_data['password1']) > 7:
+            u = User.objects.get(pk=pk)
+            u.set_password(form_data['password1'])
+            success(request, "Password Update Successfully ")
+            u.save()
+            return redirect(reverse('accounts:list_view'))
+        else:
+            error(request, "The Passwords Do Not Match or needs to be more that 8 characters")
+            return redirect("accounts:password_update", pk)
+
+
+class AccountsUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = 'accounts/user_update_form.html'
+    success_url = reverse_lazy('accounts:list_view')
+
+
+class AccountsDelete(LoginRequiredMixin, DeleteView):
+    model = User
+    success_url = reverse_lazy('accounts:list_view')
+    template_name = 'accounts/user_confirm_delete.html'
