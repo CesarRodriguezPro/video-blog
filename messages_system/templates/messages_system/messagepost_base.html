@@ -9,8 +9,8 @@ List View
 {% block content %}
   <main id="main" class="main">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <a type="button" class="btn btn-secondary" href="{% url 'post:list_view' %}">Post List</a>
-      <a type="button" class="btn btn-secondary" href="{% url 'post:create' %}">Create</a>
+      <a type="button" class="btn btn-secondary" href="{% url 'message_post:list' %}">Messages List List</a>
+      <a type="button" class="btn btn-secondary" href="{% url 'message_post:view_saved' %}">Saved Messages</a>
     </div>
     {% block body %}
     {% endblock %}

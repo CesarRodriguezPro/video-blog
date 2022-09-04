@@ -1,4 +1,4 @@
-{% extends 'post/post_base.html' %}
+{% extends 'messages_system/messagepost_base.html' %}
 
 
 {% block title %}
@@ -31,7 +31,11 @@
                     <th>{{ item.email }}</th>
                     <th>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                          <a type="button" class="btn btn-secondary" href="{% url 'message_post:update' item.pk %}">Update</a>
+                            {% if is_message_saved %}
+                                  <a type="button" class="btn btn-secondary" href="{% url 'message_post:unsaved' item.pk %}">UnSave</a>
+                            {% else %}
+                                  <a type="button" class="btn btn-secondary" href="{% url 'message_post:save' item.pk %}">Save</a>
+                            {% endif %}
                           <a type="button" class="btn btn-secondary" href="{% url 'message_post:delete' item.pk %}">Delete</a>
                         </div>
                     </th>

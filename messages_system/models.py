@@ -9,3 +9,7 @@ class MessagePost(models.Model):
     subject = models.CharField(max_length=225)
     message = models.TextField()
     read = models.BooleanField(default=False)
+    saved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.time} -> {self.email} | {self.subject}"
