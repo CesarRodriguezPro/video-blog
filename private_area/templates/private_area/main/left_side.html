@@ -1,0 +1,51 @@
+<div class="col-lg-8">
+    <div class="row">
+
+        <!-- Recent Sales -->
+        <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+                <div class="card-body">
+                    <h5 class="card-title">Messages<span>| Today</span></h5>
+
+                    <table class="table table-borderless datatable">
+                        <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">From</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in object_list %}
+                        <tr>
+                            <td>
+                             <a  {% if not item.read %} style="font-weight: bold" {% endif %}    href="{% url 'message_post:detail' item.pk %}">{{ item.time|date:"m/d/Y" }} </a>
+                            </td>
+                            <td {% if not item.read %} style="font-weight: bold" {% endif %} >  {{ item.sender_name }} </td>
+                            <td {% if not item.read %} style="font-weight: bold" {% endif %}>   {{ item.subject }} </td>
+                            <td {% if not item.read %} style="font-weight: bold" {% endif %}>   {{ item.email }} </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    {% if is_message_saved %}
+                                          <a type="button" class="btn btn-secondary" href="{% url 'message_post:unsaved' item.pk %}">UnSave</a>
+                                    {% else %}
+                                          <a type="button" class="btn btn-secondary" href="{% url 'message_post:save' item.pk %}">Save</a>
+                                    {% endif %}
+                                  <a type="button" class="btn btn-secondary" href="{% url 'message_post:unread' item.pk %}">Unread</a>
+                                  <a type="button" class="btn btn-secondary" href="{% url 'message_post:delete' item.pk %}">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div><!-- End Recent Sales -->
+
+    </div>
+</div>

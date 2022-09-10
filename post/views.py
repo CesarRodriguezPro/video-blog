@@ -11,19 +11,19 @@ class PostListView(LoginRequiredMixin, ListView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     success_url = reverse_lazy('post:list_view')
-    fields = ['title', 'message', 'file']
+    fields = ['title', 'message', 'file', 'thumbnail']
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     success_url = reverse_lazy('post:list_view')
-    fields = ['title', 'message', 'file']
+    fields = ['title', 'message', 'file', 'thumbnail']
 
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
     success_url = reverse_lazy('post:list_view')
-    fields = ['date', 'title', 'message', 'file']
+    fields = ['date', 'title', 'message', 'file', 'thumbnail']
 
 
 class PostDeleteView(LoginRequiredMixin, DeleteView):

@@ -10,10 +10,7 @@ class MessageListView(LoginRequiredMixin, View):
         context = {
             'object_list': MessagePost.objects.filter(saved=False)
         }
-
         return render(request, "messages_system/messagepost_list.html", context)
-
-    model = MessagePost
 
 
 class MessageSaveView(LoginRequiredMixin, View):
@@ -49,10 +46,23 @@ class MessageUpdateView(LoginRequiredMixin, UpdateView):
     fields = ['title', 'message', 'file']
 
 
-class MessageDetailView(LoginRequiredMixin, DetailView):
-    model = MessagePost
-    success_url = reverse_lazy('message_post:list')
-    fields = ['date', 'title', 'message', 'file']
+class MessageDetailView(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        message = MessagePost.objects.get(pk=pk)
+        context = {
+            'object': message
+        }
+        message.read = True
+        message.save()
+        return render(request, 'messages_system/messagepost_detail.html', context)
+
+
+class UnreadMessage(LoginRequiredMixin, View):
+    def get(self, request, pk):
+        message = MessagePost.objects.get(pk=pk)
+        message.read = False
+        message.save()
+        return redirect('message_post:list')
 
 
 class MessageDeleteView(LoginRequiredMixin, DeleteView):

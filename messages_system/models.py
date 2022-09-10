@@ -10,6 +10,7 @@ class MessagePost(models.Model):
     message = models.TextField()
     read = models.BooleanField(default=False)
     saved = models.BooleanField(default=False)
+    date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.time} -> {self.email} | {self.subject}"

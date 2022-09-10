@@ -9,10 +9,22 @@ List View
 {% block content %}
   <main id="main" class="main">
     <div class="btn-group" role="group" aria-label="Basic example">
-      <a type="button" class="btn btn-secondary" href="{% url 'message_post:list' %}">Messages List List</a>
+      <button  class="btn btn-secondary" onclick="GoBackWithRefresh();return false;" >Messages List List</button>
       <a type="button" class="btn btn-secondary" href="{% url 'message_post:view_saved' %}">Saved Messages</a>
     </div>
     {% block body %}
     {% endblock %}
   </main>
+
+<script>
+  function GoBackWithRefresh(event) {
+    if ('referrer' in document) {
+        window.location = document.referrer;
+        /* OR */
+        //location.replace(document.referrer);
+    } else {
+        window.history.back();
+    }
+}
+</script>
 {% endblock %}

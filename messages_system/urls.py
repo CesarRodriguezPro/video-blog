@@ -12,4 +12,5 @@ urlpatterns = [
     path('message_save/<pk>', views.CreateMessageSave.as_view(), name='save'),
     path('unSave_message_save/<pk>', views.UnSavedMessage.as_view(), name='unsaved'),
     path('saved_messages/', views.MessageSaveView.as_view(), name='view_saved'),
+    path('unread/<pk>', views.UnreadMessage.as_view(), name='unread'),
 ]
